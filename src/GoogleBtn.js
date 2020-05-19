@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { connect } from 'react-redux';
+
 
 
 const CLIENT_ID = "876582935749-1dhphtb8pel2td9q1n3biniq443kupj9.apps.googleusercontent.com";
@@ -11,7 +13,7 @@ class GoogleBtn extends Component {
         super(props);
 
         this.state = {
-            isLogined: false,
+            isLoggedin: false,
             accessToken: ''
         };
 
@@ -25,7 +27,7 @@ class GoogleBtn extends Component {
         // debugger
         if (response.accessToken) {
             this.setState(state => ({
-                isLogined: true,
+                isLoggedin: true,
                 accessToken: response.accessToken
             }));
         }
@@ -34,7 +36,7 @@ class GoogleBtn extends Component {
 
     logout(response) {
         this.setState(state => ({
-            isLogined: false,
+            isLoggedin: false,
             accessToken: ''
         }));
     }
@@ -50,7 +52,7 @@ class GoogleBtn extends Component {
     render() {
         return (
             <div>
-                {this.state.isLogined ?
+                {this.state.isLoggedin ?
                     <GoogleLogout
                         clientId={CLIENT_ID}
                         buttonText='Logout'
@@ -59,18 +61,28 @@ class GoogleBtn extends Component {
                     >
                     </GoogleLogout> : <GoogleLogin
                         clientId={CLIENT_ID}
-                        buttonText='Login'
+                        buttonText='Log in with Google'
                         onSuccess={this.login}
                         onFailure={this.handleLoginFailure}
                         cookiePolicy={'single_host_origin'}
                         responseType='code,token'
                     />
                 }
-                {this.state.accessToken ? <h5>Your Access Token: <br /><br /> {this.state.accessToken}</h5> : null}
+                {/* {this.state.accessToken ? <h5>Your Access Token: <br /><br /> {this.state.accessToken}</h5> : null} */}
 
             </div>
         )
     }
 }
 
-export default GoogleBtn;
+const mdp = dispatch => {
+    return {
+        toggle: function(isLoggedin) {
+            let action = isLoggedin ? this.state.accessToken : null;
+        dispatch(action)
+        }
+    }
+}
+   
+
+export default connect(null, mdp)(GoogleBtn);
