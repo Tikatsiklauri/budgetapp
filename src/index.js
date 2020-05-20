@@ -1,10 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Store from './store';
 import Root from './root';
+
+
+
 
 const root = document.getElementById("root");
 ReactDOM.render(

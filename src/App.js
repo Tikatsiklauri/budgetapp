@@ -1,16 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import GoogleBtn from './GoogleBtn';
-import Store from './store';
+import {AuthRoute, ProtectedRoute} from './route_util';
+import SlideTwo from './components/slide_two';
+
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-      <GoogleBtn />
-      </header>
-    </div>
+     <AuthRoute exact to="/" component={GoogleBtn}/>
+     <ProtectedRoute exact to="/slideTwo" component={SlideTwo}/> 
+   </div>
   );
 }
 

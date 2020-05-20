@@ -1,8 +1,9 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
-
-export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
-export const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
+const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
+const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
 
 export const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
@@ -15,11 +16,12 @@ export const logoutCurrentUser = () => ({
 
 const _initialState = Object.freeze({ currentUser: null});
 
-const sessionReducer = (state = _initialState, action) => {
+const reducer = (state = _initialState, action) => {
     Object.freeze(state);
     switch (action.type) {
       case RECEIVE_CURRENT_USER:
-        return Object.assign({}, { id: action.currentUser.id });
+        // debugger
+        return Object.assign({}, state, { user: action.currentUser })
       case LOGOUT_CURRENT_USER:
         return _initialState;
       default:
@@ -27,6 +29,7 @@ const sessionReducer = (state = _initialState, action) => {
     }
 };
 
-const Store = createStore(sessionReducer);
+const Store = createStore(reducer, [], applyMiddleware(thunk, logger));
+
 
 export default Store;
