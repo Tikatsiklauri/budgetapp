@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
 
 const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 const LOGOUT_CURRENT_USER = "LOGOUT_CURRENT_USER";
@@ -36,7 +35,7 @@ const reducer = (state = _initialState, action) => {
     }
 };
 
-const Store = createStore(reducer, [], applyMiddleware(thunk, logger));
+const Store = createStore(reducer, [], applyMiddleware(thunk));
 
 
 export default Store;
