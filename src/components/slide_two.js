@@ -88,7 +88,6 @@ class SlideTwo extends React.Component {
   }
 
   handleSubmit(){
-    debugger
     this.props.receiveBudget(this.state);
     this.props.history.push('/thirdSlide')
   }
@@ -99,7 +98,7 @@ class SlideTwo extends React.Component {
     return (
       <div >
         <div className="mainDiv">
-        <div className="welcome">Welcome to your monthly budget</div>
+        <div className="welcome">{`Welcome to your monthly budget ${this.props.name}`}</div>
         <div className="logoutBtn">
           <GoogleLogout
             clientId={CLIENT_ID}
@@ -143,7 +142,11 @@ class SlideTwo extends React.Component {
   }
 }
 
-const msp = (state) => ({});
+const msp = (state) => {
+  return {
+  name: state.user
+  }
+};
 
 const mdp = (dispatch) => ({
   logout: () => dispatch(logoutCurrentUser()),

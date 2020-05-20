@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Route, Redirect, withRouter } from 'react-router-dom';
 
 const msp = state => {
-    // debugger
     return {
     loggedIn: Boolean(state.user)
     }

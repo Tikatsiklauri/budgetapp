@@ -40,7 +40,7 @@ class GoogleBtn extends Component {
 
     login(response) {
         if (response.accessToken) {
-            this.props.isLoggedin(response.accessToken)
+            this.props.isLoggedin(response.profileObj.name);
         }
     }
 
