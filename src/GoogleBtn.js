@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 import { connect } from 'react-redux';
 import { receiveCurrentUser } from './store';
 import styled, { keyframes } from "styled-components";
 import { bounce } from "react-animations";
-import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+
 
 
 const bounceAnimation = keyframes`${bounce}`;
@@ -53,15 +52,16 @@ class GoogleBtn extends Component {
 
     render() {
         return (
+          <div className="App-header">
           <Card
             style={{
               width: "500px",
               height: "500px",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
               margin: "0px auto",
-              marginTop: "100px",
+              marginTop: "30px",
+              backgroundColor: "#c5cae9"
             }}
           >
             <CardContent>
@@ -69,11 +69,12 @@ class GoogleBtn extends Component {
               
                 color="textSecondary"
                 gutterBottom
+                style={{fontSize: "26px"}}
               >
-                Word of the Day
+                Budget Planner
               </Typography>
             </CardContent>
-            <CardActions style={{justifyContent: "center"}}>
+            <CardActions style={{justifyContent: "center", marginTop: "150px"}}>
               
                 {/* <Container> */}
                 <BouncyDiv>
@@ -90,6 +91,7 @@ class GoogleBtn extends Component {
           
             </CardActions>
           </Card>
+          </div>
         );
     }
 }
