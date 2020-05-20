@@ -21,7 +21,10 @@ class ThirdSlide extends React.Component {
 }
 
 const msp = (state) => ({
-    sliderValue: state.value
+    sliderValue: state.value,
+    salary: state.salary,
+    expenses: state.expenses,
+    savings: state.savings
 });
 
 export default connect(msp, null)(ThirdSlide);

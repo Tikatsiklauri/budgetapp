@@ -26,10 +26,8 @@ const reducer = (state = _initialState, action) => {
     Object.freeze(state);
     switch (action.type) {
       case RECEIVE_CURRENT_USER:
-        // debugger
         return Object.assign({}, state, { user: action.currentUser });
       case RECEIVE_BUDGET_VALUE:
-        debugger
         return Object.assign({}, state, action.payload);
       case LOGOUT_CURRENT_USER:
         return _initialState;
